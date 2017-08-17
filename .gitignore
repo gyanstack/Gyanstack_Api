@@ -3,3 +3,8 @@
 ################################################################################
 
 /Api/bin/Debug/netcoreapp2.0
+/Api/obj
+/Data.DataAccess/bin/Debug/netcoreapp2.0
+/Data.DataAccess/obj
+/Data.Entities/bin/Debug/netcoreapp2.0
+/Data.Entities/obj
