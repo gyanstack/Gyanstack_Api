@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Data.Entities.SubSection>
+﻿@model IEnumerable<Api.Models.SubSectionViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -25,10 +25,7 @@
                     @Html.DisplayNameFor(model => model.Active)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.SectionId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Id)
+                    @Html.DisplayNameFor(model => model.Section)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.CreatedDate)
@@ -55,10 +52,7 @@
                 @Html.DisplayFor(modelItem => item.Active)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SectionId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
+                @Html.DisplayFor(modelItem => item.Section)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CreatedDate)
@@ -67,9 +61,8 @@
                 @Html.DisplayFor(modelItem => item.ModifiedDate)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }, new { @class = "btn"}) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id }, new { @class = "btn" })
             </td>
         </tr>
 }

@@ -8,3 +8,7 @@
 /Data.DataAccess/obj
 /Data.Entities/bin/Debug/netcoreapp2.0
 /Data.Entities/obj
+/Api/bin/Release/netcoreapp2.0
+/Data.DataAccess/bin/Release/netcoreapp2.0
+/Data.Entities/bin/Release/netcoreapp2.0
+/Api/Properties/PublishProfiles

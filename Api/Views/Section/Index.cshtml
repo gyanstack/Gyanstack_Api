@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Data.Entities.Section>
+﻿@model IEnumerable<Api.Models.SectionViewModel>
     @{
     ViewData["Title"] = "Index";
     }
@@ -21,6 +21,12 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Active)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModifiedDate)
+                </th>
                 <th></th>
             </tr>
         </thead>
@@ -40,8 +46,14 @@
                         @Html.DisplayFor(modelItem => item.Active)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Create", new { id=item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        @Html.DisplayFor(modelItem => item.CreatedDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModifiedDate)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id=item.Id }, new { @class="btn"}) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn" })
                     </td>
                 </tr>
         }
