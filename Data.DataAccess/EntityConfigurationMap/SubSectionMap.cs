@@ -10,9 +10,12 @@ namespace Data.DataAccess.EntityConfigurationMap
         public override void Map(EntityTypeBuilder<SubSection> builder)
         {
             builder.HasKey(x => x.Id);
+
             builder.HasOne(x => x.Section)
                 .WithMany(x => x.Childs)
-                .HasForeignKey(x => x.SectionId);
+                .HasForeignKey(x => x.SectionId)
+                .OnDelete(DeleteBehavior.SetNull);
+
             builder.ToTable("SubSection");
         }
     }

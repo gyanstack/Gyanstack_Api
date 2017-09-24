@@ -9,7 +9,7 @@ namespace Api.Models
         public int Order { get; set; }
         public bool Active { get; set; }
         public string Section { get; set; }
-        public int SectionId { get; set; }
+        public int? SectionId { get; set; }
         public List<DropdownViewModel> SectionList { get; set; }
     }
 }

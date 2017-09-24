@@ -3,12 +3,10 @@ using Data.DataAccess.Interface;
 using Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using System;
-using System.Collections.Generic;
 
 namespace Api.Controllers
 {
-    public class SubSectionController : Controller
+    public class SubSectionController : BaseController
     {
         private readonly IEntityBaseRepository<SubSection> _subSectionRepository;
         private readonly IEntityBaseRepository<Section> _sectionRepository;
@@ -30,16 +28,12 @@ namespace Api.Controllers
         {
             return View(new SubSectionViewModel
             {
-                SectionList = _sectionRepository.GetAll().OrderBy(y => y.Order).Select(y => new DropdownViewModel
-                {
-                    Id = y.Id,
-                    Description = y.Description,
-                    Name = y.Name
-                }).ToList(),
+                SectionList = _sectionRepository.GetAll().OrderBy(y => y.Order).ToList().ConvertAll(ToDropDownViewModel),
             });
         }
 
-        public IActionResult Edit(int id)
+        public IActionResult Edit(
+            int id)
         {
             var model = ToSubSectionViewModel(_subSectionRepository.GetSingle(id));
             model.SectionList = _sectionRepository.GetAll().OrderBy(y => y.Order).Select(y => new DropdownViewModel
@@ -52,7 +46,8 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(SubSectionViewModel model)
+        public IActionResult Create(
+            SubSectionViewModel model)
         {
             if (model.Id == 0)
                 _subSectionRepository.Add(ToSubSection(model));
@@ -62,14 +57,16 @@ namespace Api.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Delete(int id)
+        public IActionResult Delete(
+            int id)
         {
             _subSectionRepository.DeleteWhere(x => x.Id == id);
             _subSectionRepository.Commit();
             return RedirectToAction("Index");
         }
 
-        private SubSectionViewModel ToSubSectionViewModel(SubSection input)
+        private SubSectionViewModel ToSubSectionViewModel(
+            SubSection input)
         {
             return new SubSectionViewModel
             {
@@ -79,13 +76,14 @@ namespace Api.Controllers
                 Id = input.Id,
                 SectionId = input.SectionId,
                 Order = input.Order,
-                Section = input.Section != null ? input.Section.Name : "",
+                Section = input.Section != null ? input.Section.Name : string.Empty,
                 CreatedDate = input.CreatedDate,
                 ModifiedDate = input.ModifiedDate
             };
         }
 
-        private SubSection ToSubSection(SubSectionViewModel input)
+        private SubSection ToSubSection(
+            SubSectionViewModel input)
         {
             return new SubSection
             {
@@ -97,6 +95,5 @@ namespace Api.Controllers
                 SectionId = input.SectionId
             };
         }
-
     }
 }

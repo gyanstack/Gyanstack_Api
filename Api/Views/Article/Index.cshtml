@@ -1,18 +1,19 @@
-﻿@model IEnumerable<Api.Models.SectionViewModel>
+﻿@model IEnumerable<Api.Models.ArticleViewModel>
 @{
     ViewData["Title"] = "Index";
 }
 <h2>Index</h2>
+
 <div class="panel panel-primary">
     <div class="pull-right">
-        @*<a asp-action="Create" class="btn btn-success">
+        <a asp-action="Create" class="btn btn-success">
             Create New
             <span class="glyphicon glyphicon-plus-sign"></span>
-        </a>*@
+        </a>
     </div>
     <div class="panel-heading">
         <div class="panel-title">
-            Section List
+           Article List
         </div>
     </div>
     <div class="panel-body" style="padding:0px">
@@ -23,13 +24,13 @@
                         @Html.DisplayNameFor(model => model.Name)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Description)
+                        @Html.DisplayNameFor(model => model.Route)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Order)
+                        @Html.DisplayNameFor(model => model.Author)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Active)
+                        @Html.DisplayNameFor(model => model.SubSection)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.CreatedDate)
@@ -37,7 +38,9 @@
                     <th>
                         @Html.DisplayNameFor(model => model.ModifiedDate)
                     </th>
-                    <th></th>
+                    <th>
+                        Action
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -48,13 +51,13 @@
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Description)
+                            @Html.DisplayFor(modelItem => item.Route)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Order)
+                            @Html.DisplayFor(modelItem => item.Author)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Active)
+                            @Html.DisplayFor(modelItem => item.SubSection)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.CreatedDate)
@@ -65,11 +68,14 @@
                         <td>
                             <a asp-action="Edit/@item.Id" title="Edit">
                                 <span class=" glyphicon glyphicon-edit"></span>
+                            </a> |
+                            <a asp-action="Delete/@item.Id" title="Delete">
+                                <span class=" glyphicon glyphicon-remove-circle"></span>
                             </a>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
-        </div>
     </div>
+</div>

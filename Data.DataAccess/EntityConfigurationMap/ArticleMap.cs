@@ -7,12 +7,21 @@ namespace Data.DataAccess.EntityConfigurationMap
 {
     public class ArticleMap : EntityTypeConfiguration<Article>
     {
-        public override void Map(EntityTypeBuilder<Article> builder)
+        public override void Map(
+            EntityTypeBuilder<Article> builder)
         {
             builder.HasKey(x => x.Id);
+
             builder.HasOne(x => x.SubSection)
                 .WithMany(x => x.Articles)
-                .HasForeignKey(x => x.SubSectionId);
+                .HasForeignKey(x => x.SubSectionId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            builder.HasOne(x => x.User)
+               .WithMany(x => x.Articles)
+               .HasForeignKey(x => x.AuthorId)
+               .OnDelete(DeleteBehavior.SetNull);
+
             builder.ToTable("Article");
         }
     }

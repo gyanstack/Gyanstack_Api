@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Api.Controllers
 {
-    public class SectionController : Controller
+    public class SectionController : BaseController
     {
         private readonly IEntityBaseRepository<Section> _sectionRepository;
 

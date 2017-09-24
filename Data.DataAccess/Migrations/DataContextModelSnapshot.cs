@@ -25,7 +25,7 @@ namespace Data.DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Author");
+                    b.Property<int?>("AuthorId");
 
                     b.Property<DateTime?>("CreatedDate");
 
@@ -39,9 +39,13 @@ namespace Data.DataAccess.Migrations
 
                     b.Property<string>("Route");
 
-                    b.Property<int>("SubSectionId");
+                    b.Property<int?>("SubSectionId");
+
+                    b.Property<int>("UserView");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
 
                     b.HasIndex("SubSectionId");
 
@@ -53,7 +57,7 @@ namespace Data.DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ArticleId");
+                    b.Property<int?>("ArticleId");
 
                     b.Property<DateTime?>("CreatedDate");
 
@@ -61,7 +65,7 @@ namespace Data.DataAccess.Migrations
 
                     b.Property<string>("UserComment");
 
-                    b.Property<int>("UserId");
+                    b.Property<int?>("UserId");
 
                     b.HasKey("Id");
 
@@ -111,7 +115,7 @@ namespace Data.DataAccess.Migrations
 
                     b.Property<int>("Order");
 
-                    b.Property<int>("SectionId");
+                    b.Property<int?>("SectionId");
 
                     b.HasKey("Id");
 
@@ -125,15 +129,23 @@ namespace Data.DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<bool>("Active");
+
                     b.Property<string>("ContactNumber");
 
                     b.Property<DateTime?>("CreatedDate");
+
+                    b.Property<string>("Description");
 
                     b.Property<string>("Email");
 
                     b.Property<DateTime?>("ModifiedDate");
 
                     b.Property<string>("Name");
+
+                    b.Property<string>("UserAvatar");
+
+                    b.Property<int>("UserType");
 
                     b.HasKey("Id");
 
@@ -142,10 +154,15 @@ namespace Data.DataAccess.Migrations
 
             modelBuilder.Entity("Data.Entities.Article", b =>
                 {
+                    b.HasOne("Data.Entities.User", "User")
+                        .WithMany("Articles")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.HasOne("Data.Entities.SubSection", "SubSection")
                         .WithMany("Articles")
                         .HasForeignKey("SubSectionId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("Data.Entities.Comment", b =>
@@ -153,12 +170,12 @@ namespace Data.DataAccess.Migrations
                     b.HasOne("Data.Entities.Article", "Article")
                         .WithMany("Comments")
                         .HasForeignKey("ArticleId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("Data.Entities.User", "User")
                         .WithMany("Comments")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("Data.Entities.SubSection", b =>
@@ -166,7 +183,7 @@ namespace Data.DataAccess.Migrations
                     b.HasOne("Data.Entities.Section", "Section")
                         .WithMany("Childs")
                         .HasForeignKey("SectionId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 #pragma warning restore 612, 618
         }

@@ -12,14 +12,16 @@ namespace Api
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
-        //WebHost.CreateDefaultBuilder(args)
+        WebHost.CreateDefaultBuilder(args)
+            .UseStartup<Startup>()
+            .Build();
+
+        //public static IWebHost BuildWebHost(string[] args) =>
+        //new WebHostBuilder()
+        //    .UseKestrel()
+        //    .UseContentRoot(Directory.GetCurrentDirectory())
+        //    .UseIISIntegration()
         //    .UseStartup<Startup>()
         //    .Build();
-
-        WebHost.CreateDefaultBuilder().UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
-                .UseStartup<Startup>()
-                .Build();
     }
 }

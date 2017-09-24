@@ -1,0 +1,68 @@
+﻿@model Api.Models.ArticleViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+<h2>Create</h2>
+<h4>ArticleViewModel</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Route" class="control-label"></label>
+                <input asp-for="Route" class="form-control" />
+                <span asp-validation-for="Route" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Section" class="control-label"></label>
+                <select asp-for="SectionId" class="form-control"
+                        asp-items="@(new  SelectList(Model.SectionList,"Id","Name"))"></select>
+                <span asp-validation-for="SectionId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubSection" class="control-label"></label>
+                <select asp-for="SubSectionId" class="form-control"
+                        asp-items="@(new  SelectList(Model.SubSectionList,"Id","Name"))"></select>
+                <span asp-validation-for="SubSectionId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Author" class="control-label"></label>
+                <select asp-for="AuthorId" class="form-control"
+                        asp-items="@(new  SelectList(Model.UserList,"Id","Name"))"></select>
+                <span asp-validation-for="AuthorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="File" class="control-label"></label>
+                <input asp-for="File" class="form-control" type="file" />
+                <span asp-validation-for="File" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Images" class="control-label"></label>
+                <input asp-for="Images" class="form-control" type="file" multiple />
+                <span asp-validation-for="Images" class="text-danger"></span>
+            </div>
+            <input asp-for="Id" class="form-control" type="hidden" />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

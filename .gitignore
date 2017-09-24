@@ -12,3 +12,5 @@
 /Data.DataAccess/bin/Release/netcoreapp2.0
 /Data.Entities/bin/Release/netcoreapp2.0
 /Api/Properties/PublishProfiles
+/Data.DataAccess/Migrations/20170902062314_server.cs
+/Data.DataAccess/Migrations/20170902062314_server.Designer.cs

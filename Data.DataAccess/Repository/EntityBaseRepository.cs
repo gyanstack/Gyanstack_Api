@@ -69,6 +69,7 @@ namespace Data.DataAccess.Repository
         public virtual void Add(T entity)
         {
             entity.CreatedDate = DateTime.Now;
+            entity.ModifiedDate = DateTime.Now;
             EntityEntry dbEntityEntry = _context.Entry<T>(entity);
             _context.Set<T>().Add(entity);
         }
@@ -79,6 +80,7 @@ namespace Data.DataAccess.Repository
             EntityEntry dbEntityEntry = _context.Entry<T>(entity);
             dbEntityEntry.State = EntityState.Modified;
         }
+
         public virtual void Delete(T entity)
         {
             EntityEntry dbEntityEntry = _context.Entry<T>(entity);
