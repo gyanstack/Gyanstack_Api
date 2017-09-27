@@ -20,5 +20,7 @@ namespace Api.Dto
         public string UserAvatar { get; internal set; }
         public List<UserComment> UserComments { get; set; }
         public string Section { get; internal set; }
+        public int LikeCount { get; set; }
+        public int DislikeCount { get; set; }
     }
 }

@@ -155,7 +155,7 @@ namespace Api.Controllers
         {
             model.SectionList = _sectionRepository.GetAll().OrderBy(y => y.Order).ToList().ConvertAll(ToDropDownViewModel);
             model.SubSectionList = _subSectionRepository.GetAll().OrderBy(y => y.Order).ToList().ConvertAll(ToDropDownViewModel);
-            model.UserList = _userRepository.GetAll().OrderBy(y => y.Id).ToList().ConvertAll(ToDropDownViewModel);
+            model.UserList = _userRepository.GetAll().Where(u => u.UserType == 1 && u.Active).OrderBy(y => y.Id).ToList().ConvertAll(ToDropDownViewModel);
         }
 
         private Article ToArticle(

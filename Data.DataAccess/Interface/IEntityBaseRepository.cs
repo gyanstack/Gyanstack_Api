@@ -8,6 +8,7 @@ namespace Data.DataAccess.Interface
     public interface IEntityBaseRepository<T> where T : class, IEntity, new()
     {
         IEnumerable<T> AllIncluding(params Expression<Func<T, object>>[] includeProperties);
+        IEnumerable<T> AllIncluding(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties);
         IEnumerable<T> GetAll();
         int Count();
         T GetSingle(int id);

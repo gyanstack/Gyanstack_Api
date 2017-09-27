@@ -30,6 +30,7 @@ namespace Data.DataAccess.Repository
         {
             return _context.Set<T>().Count();
         }
+
         public virtual IEnumerable<T> AllIncluding(params Expression<Func<T, object>>[] includeProperties)
         {
             IQueryable<T> query = _context.Set<T>();
@@ -38,6 +39,16 @@ namespace Data.DataAccess.Repository
                 query = query.Include(includeProperty);
             }
             return query.AsEnumerable();
+        }
+
+        public virtual IEnumerable<T> AllIncluding(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties)
+        {
+            IQueryable<T> query = _context.Set<T>();
+            foreach (var includeProperty in includeProperties)
+            {
+                query = query.Include(includeProperty);
+            }
+            return query.Where(predicate).AsEnumerable();
         }
 
         public T GetSingle(int id)

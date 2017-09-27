@@ -30,7 +30,7 @@ namespace Api.Controllers
             int count)
         {
             var result = _articleRepository.AllIncluding(x => x.SubSection, x => x.SubSection.Section, x => x.User)
-                                            .OrderByDescending(x => x.ModifiedDate).Take(count).ToList().ConvertAll(ToArticleDto);
+                                            .OrderByDescending(x => x.CreatedDate).Take(count).ToList().ConvertAll(ToArticleDto);
             return new OkObjectResult(result);
         }
 

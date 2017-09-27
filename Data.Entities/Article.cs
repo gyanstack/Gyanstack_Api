@@ -11,6 +11,8 @@ namespace Data.Entities
         public int? AuthorId { get; set; }
         public int? SubSectionId { get; set; }
         public int UserView { get; set; }
+        public int LikeCount { get; set; }
+        public int DislikeCount { get; set; }
 
         public virtual SubSection SubSection { get; set; }
         public virtual User User { get; set; }

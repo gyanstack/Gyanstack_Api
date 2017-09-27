@@ -31,6 +31,10 @@ namespace Data.DataAccess.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<int>("DislikeCount");
+
+                    b.Property<int>("LikeCount");
+
                     b.Property<DateTime?>("ModifiedDate");
 
                     b.Property<string>("Name");

@@ -14,3 +14,5 @@
 /Api/Properties/PublishProfiles
 /Data.DataAccess/Migrations/20170902062314_server.cs
 /Data.DataAccess/Migrations/20170902062314_server.Designer.cs
+/Data.DataAccess/Migrations/20170926045818_UpdateLike.cs
+/Data.DataAccess/Migrations/20170926045818_UpdateLike.Designer.cs
